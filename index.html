@@ -29,7 +29,8 @@
         .header { background: var(--primary); color: white; padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; flex-direction: column; align-items: flex-start; }
         .logo h1 { font-size: 24px; font-weight: 700; line-height: 1; }
-        .logo span { font-size: 11px; opacity: 0.6; margin-top: 2px; letter-spacing: 0.5px; }
+        .logo h1 span { font-size: inherit; opacity: 1; }
+        .logo > span { font-size: 11px; opacity: 0.6; margin-top: 2px; letter-spacing: 0.5px; }
         .header-badges { display: flex; gap: 10px; align-items: center; }
         .privacy-badge { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--success); background: rgba(45, 138, 110, 0.15); padding: 8px 14px; border-radius: 20px; }
         .storage-badge { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--info); background: rgba(102,126,234,0.15); padding: 6px 12px; border-radius: 16px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
@@ -272,7 +273,7 @@
 <body>
     <header class="header">
         <div class="logo">
-            <h1>LiVE</h1>
+            <h1 style="font-size: 24px;"><span style="color: var(--accent);">Li</span>VE</h1>
             <span>LinkedIn Visual Engine</span>
         </div>
         <div class="header-badges">
