@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About LiVE - LinkedIn Visual Engine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAF9F7;
+            --bg-warm: #F5F3EE;
+            --surface: #FFFFFF;
+            --border: #E8E4DD;
+            --text: #1a1a2e;
+            --text-secondary: #636e72;
+            --accent: #c9a227;
+            --primary: #1a1a2e;
+            --success: #2d8a6e;
+            --info: #667eea;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; }
+
+        .header { background: var(--primary); color: white; padding: 20px 32px; }
+        .header-inner { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; flex-direction: column; align-items: flex-start; }
+        .logo h1 { font-size: 24px; font-weight: 700; line-height: 1; }
+        .logo span { font-size: 11px; opacity: 0.6; margin-top: 2px; letter-spacing: 0.5px; }
+        .back-link { color: white; text-decoration: none; font-size: 13px; opacity: 0.8; }
+        .back-link:hover { opacity: 1; }
+
+        .main { max-width: 800px; margin: 0 auto; padding: 48px 32px; }
+
+        h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--primary); margin-bottom: 16px; margin-top: 40px; }
+        h2:first-of-type { margin-top: 0; }
+
+        p { margin-bottom: 16px; color: var(--text); }
+
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+
+        .tech-list { list-style: none; padding: 0; }
+        .tech-list li { padding: 12px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; }
+        .tech-list li:last-child { border-bottom: none; }
+        .tech-list .bullet { color: var(--accent); font-weight: 600; font-size: 18px; line-height: 1.4; }
+        .tech-list .content { flex: 1; }
+        .tech-list .title { font-weight: 600; color: var(--primary); }
+        .tech-list .desc { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+
+        .privacy-note { background: rgba(45,138,110,0.1); border-radius: 10px; padding: 16px; margin-top: 32px; }
+        .privacy-note p { margin: 0; font-size: 13px; color: var(--success); }
+
+        .footer { text-align: center; padding: 32px; font-size: 12px; color: var(--text-secondary); }
+        .footer a { color: var(--info); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <h1>LiVE</h1>
+                <span>LinkedIn Visual Engine</span>
+            </div>
+            <a href="LIVE.html" class="back-link">← Back to App</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <h2>What It Is</h2>
+        <div class="card">
+            <p>LiVE is a free, privacy-first tool that transforms your LinkedIn data export into actionable insights about your professional network.</p>
+            <p>LinkedIn lets you download your data, but gives you raw CSV files that are nearly impossible to make sense of. LiVE takes those files and instantly shows you:</p>
+            <p><strong>Who you actually talk to</strong> — and who you've never messaged despite being "connected" for years.</p>
+            <p><strong>Where your network is concentrated</strong> — which companies, industries, and seniority levels dominate your connections.</p>
+            <p><strong>Who advocates for you</strong> — the people who've endorsed your skills and written recommendations.</p>
+            <p><strong>What LinkedIn thinks about you</strong> — the (often hilariously wrong) inferences LinkedIn makes for ad targeting.</p>
+            <p><strong>Where the opportunities are</strong> — dormant relationships worth reviving and strategic contacts to prioritize.</p>
+            <p>Think of it as a dashboard for your professional network that LinkedIn should have built but didn't.</p>
+        </div>
+
+        <h2>How It Works</h2>
+        <div class="card">
+            <ul class="tech-list">
+                <li>
+                    <span class="bullet">•</span>
+                    <div class="content">
+                        <div class="title">100% Browser-Based Processing</div>
+                        <div class="desc">All analysis runs locally in your browser using JavaScript. Your data never leaves your computer—no server uploads, no cloud processing, no data collection.</div>
+                    </div>
+                </li>
+                <li>
+                    <span class="bullet">•</span>
+                    <div class="content">
+                        <div class="title">ZIP Extraction via JSZip</div>
+                        <div class="desc">The JSZip library extracts CSV files directly from your LinkedIn export ZIP without needing to unzip it first.</div>
+                    </div>
+                </li>
+                <li>
+                    <span class="bullet">•</span>
+                    <div class="content">
+                        <div class="title">CSV Parsing & Data Enrichment</div>
+                        <div class="desc">Custom CSV parser handles LinkedIn's export format. Each connection is enriched with calculated fields: relationship strength, dormancy status, contact categories (recruiter, executive, PE/VC).</div>
+                    </div>
+                </li>
+                <li>
+                    <span class="bullet">•</span>
+                    <div class="content">
+                        <div class="title">Pattern Matching for Categorization</div>
+                        <div class="desc">Regex patterns identify recruiters, C-suite executives, PE/VC professionals, and senior leaders based on job titles and company names.</div>
+                    </div>
+                </li>
+                <li>
+                    <span class="bullet">•</span>
+                    <div class="content">
+                        <div class="title">Message History Analysis</div>
+                        <div class="desc">Cross-references your messages.csv to calculate relationship depth (strong/warm/cold) and identify dormant connections (12+ months since contact).</div>
+                    </div>
+                </li>
+                <li>
+                    <span class="bullet">•</span>
+                    <div class="content">
+                        <div class="title">Chart.js Visualizations</div>
+                        <div class="desc">Interactive charts render network composition, connection timelines, relationship distribution, and skill endorsements.</div>
+                    </div>
+                </li>
+                <li>
+                    <span class="bullet">•</span>
+                    <div class="content">
+                        <div class="title">Single HTML File Distribution</div>
+                        <div class="desc">The entire app is one self-contained HTML file. Share it with anyone—they just open it in a browser and drop in their own data.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="privacy-note">
+            <p><strong>Privacy Guarantee:</strong> LiVE contains no analytics, tracking, or external data transmission. View the source code anytime—it's all right there in the HTML file.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p><a href="LIVE.html">← Back to LiVE</a></p>
+        <p style="margin-top: 8px;"><a href="https://robertthorson.com" target="_blank">RPT Innovation</a></p>
+    </footer>
+</body>
+</html>
