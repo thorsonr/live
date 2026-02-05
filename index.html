@@ -232,10 +232,12 @@
         .search-input { flex: 1; min-width: 200px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; }
         .filter-select { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: white; }
         .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; max-height: 600px; overflow-y: auto; }
-        .contact-card { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: var(--surface); }
+        .contact-card { border: 1px solid var(--border); border-radius: 10px; padding: 14px; background: var(--surface); position: relative; }
         .contact-card:hover { border-color: var(--accent); }
-        .contact-card .name { font-weight: 600; font-size: 14px; display: block; }
-        a.name:hover { color: var(--info) !important; }
+        .contact-card .name { font-weight: 600; font-size: 14px; display: block; color: inherit; text-decoration: none; }
+        a.name:hover { color: var(--info); text-decoration: underline; }
+        .contact-card .linkedin-link { position: absolute; top: 12px; right: 12px; color: var(--text-secondary); opacity: 0.4; font-size: 12px; text-decoration: none; }
+        .contact-card .linkedin-link:hover { opacity: 1; color: #0a66c2; }
         .contact-card .position { font-size: 12px; color: var(--text-secondary); }
         .contact-card .company { font-size: 12px; color: var(--accent); font-weight: 500; }
         .contact-card .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
@@ -926,7 +928,7 @@
                 const name = `${conn['First Name'] || ''} ${conn['Last Name'] || ''}`.trim();
                 const position = conn['Position'] || '';
                 const company = conn['Company'] || '';
-                const linkedInUrl = conn['URL'] || '';
+                const linkedInUrl = conn['URL'] || conn['Profile URL'] || conn['LinkedIn URL'] || '';
                 const email = conn['Email Address'] || '';
                 const connectedOn = conn['Connected On'] || '';
                 const connectedDate = parseDate(connectedOn);
@@ -1319,8 +1321,9 @@
                 }
                 if (c.isDormant) tags += '<span class="tag tag-dormant">Dormant</span>';
                 if (c.endorsementCount > 0) tags += '<span class="tag tag-endorsed">Endorsed</span>';
-                const nameHtml = c.linkedInUrl ? `<a href="${c.linkedInUrl}" target="_blank" class="name" style="color: inherit; text-decoration: none;">${c.name}</a>` : `<div class="name">${c.name}</div>`;
-                return `<div class="contact-card">${nameHtml}<div class="position">${c.position || 'No title'}</div><div class="company">${c.company || ''}</div><div class="tags">${tags}</div><div class="meta"><span>${c.messageCount} msgs</span><span>${c.relStrength}</span>${c.endorsementCount ? `<span>${c.endorsementCount} endorsements</span>` : ''}</div></div>`;
+                const nameHtml = c.linkedInUrl ? `<a href="${c.linkedInUrl}" target="_blank" class="name">${c.name}</a>` : `<div class="name">${c.name}</div>`;
+                const linkIcon = c.linkedInUrl ? `<a href="${c.linkedInUrl}" target="_blank" class="linkedin-link" title="View LinkedIn Profile">🔗</a>` : '';
+                return `<div class="contact-card">${linkIcon}${nameHtml}<div class="position">${c.position || 'No title'}</div><div class="company">${c.company || ''}</div><div class="tags">${tags}</div><div class="meta"><span>${c.messageCount} msgs</span><span>${c.relStrength}</span>${c.endorsementCount ? `<span>${c.endorsementCount} endorsements</span>` : ''}</div></div>`;
             }).join('') || '<p style="padding: 40px; text-align: center; color: var(--text-secondary);">No contacts match filters.</p>';
         }
 
